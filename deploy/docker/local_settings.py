@@ -33,3 +33,12 @@ CELERY_RESULT_BACKEND = BROKER_URL
 MP4HLS_COMMAND = "/home/mediacms.io/bento4/bin/mp4hls"
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
+
+LOGIN_ALLOWED = True  # whether the login button appears
+REGISTER_ALLOWED = False  # whether the register button appears
+UPLOAD_MEDIA_ALLOWED = True  # whether the upload media button appears
+CAN_LIKE_MEDIA = False  # whether the like media appears
+CAN_DISLIKE_MEDIA = False  # whether the dislike media appears
+CAN_REPORT_MEDIA = False  # whether the report media appears
+CAN_SHARE_MEDIA = False  # whether the share media appears

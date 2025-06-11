@@ -7,6 +7,7 @@ import { ItemListAsync } from '../components/item-list/ItemListAsync.jsx';
 import { InlineSliderItemListAsync } from '../components/item-list/InlineSliderItemListAsync.jsx';
 import { Page } from './Page';
 import { translateString } from '../utils/helpers/';
+import { Flag } from '../components/flags/flag';
 
 const EmptyMedia: React.FC = ({}) => {
   return (
@@ -70,58 +71,15 @@ export const HomePage: React.FC<HomePageProps> = ({
         {(links) => (
           <ApiUrlConsumer>
             {(apiUrl) => (
-              <MediaMultiListWrapper className="items-list-ver">
-                {PageStore.get('config-enabled').pages.featured &&
-                  PageStore.get('config-enabled').pages.featured.enabled && (
-                    <MediaListRow
-                      title={featured_title}
-                      style={!visibleFeatured ? { display: 'none' } : undefined}
-                      viewAllLink={featured_view_all_link ? links.featured : null}
-                    >
-                      <InlineSliderItemListAsync
-                        requestUrl={apiUrl.featured}
-                        itemsCountCallback={onLoadFeatured}
-                        hideViews={!PageStore.get('config-media-item').displayViews}
-                        hideAuthor={!PageStore.get('config-media-item').displayAuthor}
-                        hideDate={!PageStore.get('config-media-item').displayPublishDate}
-                      />
-                    </MediaListRow>
-                  )}
-
-                {PageStore.get('config-enabled').pages.recommended &&
-                  PageStore.get('config-enabled').pages.recommended.enabled && (
-                    <MediaListRow
-                      title={recommended_title}
-                      style={!visibleRecommended ? { display: 'none' } : undefined}
-                      viewAllLink={recommended_view_all_link ? links.recommended : null}
-                    >
-                      <InlineSliderItemListAsync
-                        requestUrl={apiUrl.recommended}
-                        itemsCountCallback={onLoadRecommended}
-                        hideViews={!PageStore.get('config-media-item').displayViews}
-                        hideAuthor={!PageStore.get('config-media-item').displayAuthor}
-                        hideDate={!PageStore.get('config-media-item').displayPublishDate}
-                      />
-                    </MediaListRow>
-                  )}
-
-                <MediaListRow
-                  title={latest_title}
-                  style={!visibleLatest ? { display: 'none' } : undefined}
-                  viewAllLink={latest_view_all_link ? links.latest : null}
-                >
-                  <ItemListAsync
-                    pageItems={30}
-                    requestUrl={apiUrl.media}
-                    itemsCountCallback={onLoadLatest}
-                    hideViews={!PageStore.get('config-media-item').displayViews}
-                    hideAuthor={!PageStore.get('config-media-item').displayAuthor}
-                    hideDate={!PageStore.get('config-media-item').displayPublishDate}
-                  />
-                </MediaListRow>
-
-                {zeroMedia && <EmptyMedia />}
-              </MediaMultiListWrapper>
+              <div className="language-selection-wrapper">
+                <h1>Seleziona la lingua</h1>
+                <div className="flags">
+                  <Flag src="./static/images/flags/it.svg" alt={"IT"} title="Italian" href={"http://localhost/playlists/z6l4XwVRZ"}></Flag>
+                  <Flag src="./static/images/flags/en.svg" alt={"EN"} title="Italian" href={"http://localhost/playlists/l6ny9U9Nc"}></Flag>
+                  <Flag src="./static/images/flags/fr.svg" alt={"FR"} title="Italian" href={"http://localhost/playlists/VcA9cZmA7"}></Flag>
+                  <Flag src="./static/images/flags/de.svg" alt={"DE"} title="Italian" href={"http://localhost/playlists/GAdwW1mSD"}></Flag>
+                </div> 
+              </div>
             )}
           </ApiUrlConsumer>
         )}

@@ -1,5 +1,6 @@
 cli-tool/.env
 frontend/package-lock.json
+frontend/node_modules
 media_files/encoded/
 media_files/original/
 media_files/hls/
@@ -18,3 +19,5 @@ static/drf-yasg
 cms/local_settings.py
 deploy/docker/local_settings.py
 yt.readme.md
+static_collected/
+static_collected\

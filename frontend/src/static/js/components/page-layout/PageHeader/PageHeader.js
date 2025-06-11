@@ -75,7 +75,7 @@ export function PageHeader(props) {
       }
     >
       <HeaderLeft />
-      <SearchField />
+      {/* <SearchField /> */}
       <HeaderRight />
     </header>
   );
