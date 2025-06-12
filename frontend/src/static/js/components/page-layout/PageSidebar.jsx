@@ -6,6 +6,7 @@ import { SidebarBelowNavigationMenu } from './sidebar/SidebarBelowNavigationMenu
 import { SidebarBelowThemeSwitcher } from './sidebar/SidebarBelowThemeSwitcher';
 import { SidebarThemeSwitcher } from './sidebar/SidebarThemeSwitcher';
 import { SidebarBottom } from './sidebar/SidebarBottom';
+import { MemberConsumer } from '../../utils/contexts/';
 
 import './PageSidebar.scss';
 
@@ -13,7 +14,6 @@ export function PageSidebar() {
   const { visibleSidebar, toggleSidebar } = useLayout();
 
   const containerRef = useRef(null);
-
   const [isRendered, setIsRendered] = useState(visibleSidebar || 492 > window.innerWidth);
   const [isFixedBottom, setIsFixedBottom] = useState(true);
 
@@ -117,18 +117,22 @@ export function PageSidebar() {
   }, []);
 
   return (
-    <div ref={containerRef} className={'page-sidebar' + (isFixedBottom ? ' fixed-bottom' : '')}>
-      <div className="page-sidebar-inner">
-        {visibleSidebar || isRendered ? (
-          <>
-            <SidebarNavigationMenu />
-            <SidebarBelowNavigationMenu />
-            <SidebarThemeSwitcher />
-            <SidebarBelowThemeSwitcher />
-            <SidebarBottom />
-          </>
-        ) : null}
-      </div>
-    </div>
+    <MemberConsumer>
+      {(user) => (
+        <div ref={containerRef} className={'page-sidebar' + (isFixedBottom ? ' fixed-bottom' : '')}>
+          <div className="page-sidebar-inner">
+            {!user.is.anonymous && (visibleSidebar || isRendered) ? (
+              <>
+                <SidebarNavigationMenu />
+                <SidebarBelowNavigationMenu />
+                <SidebarThemeSwitcher />
+                <SidebarBelowThemeSwitcher />
+                <SidebarBottom />
+              </>
+            ) : null}
+          </div>
+        </div>
+      )}
+    </MemberConsumer>
   );
 }

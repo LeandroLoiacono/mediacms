@@ -54,9 +54,11 @@ button {
   content: ' ';
   display: table;
 }
+
 .cf:after {
   clear: both;
 }
+
 .cf {
   *zoom: 1;
 }
@@ -174,6 +176,7 @@ button {
   }
 
   form {
+
     *[type='submit'],
     .primaryAction,
     .secondaryAction {
@@ -184,7 +187,7 @@ button {
     }
   }
 
-  h1 + form {
+  h1+form {
     margin-top: 0;
   }
 
@@ -206,17 +209,17 @@ button {
   form {
     margin-top: 1.5em;
 
-    > .control-group {
-      > *:first-child {
+    >.control-group {
+      >*:first-child {
         &.controls {
           margin-top: 2em;
           margin-bottom: 2.5em;
 
-          > *:first-child {
+          >*:first-child {
             margin-top: 0;
           }
 
-          > *:last-child {
+          >*:last-child {
             margin-bottom: 0;
           }
         }
@@ -276,7 +279,7 @@ button {
       width: auto;
       cursor: pointer;
 
-      + .help-block {
+      +.help-block {
         margin-top: 0.25em;
       }
 
@@ -303,16 +306,16 @@ button {
         line-height: 1.5;
         cursor: pointer;
 
-        + input,
-        + select,
-        + textarea {
+        +input,
+        +select,
+        +textarea {
           vertical-align: top;
           display: inline-block;
           margin-top: 0.5em;
         }
 
-        + input[type='radio'],
-        + input[type='checkbox'] {
+        +input[type='radio'],
+        +input[type='checkbox'] {
           vertical-align: top;
           display: inline-block;
           margin: 0.3em 0em 0em 0.75em;
@@ -371,7 +374,7 @@ button {
       input {
         border-color: rgba($color-error-red, 0.4);
 
-        + p {
+        +p {
           color: $color-error-red;
         }
       }
@@ -591,6 +594,7 @@ button {
   border-color: var(--default-brand-color);
   background-color: var(--default-brand-color);
 }
+
 .empty-media .button-link .material-icons {
   margin-right: 8px;
   margin-top: -1px;

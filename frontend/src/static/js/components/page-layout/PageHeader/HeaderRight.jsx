@@ -134,11 +134,6 @@ export function HeaderRight(props) {
               {(links) => (
                 <div className="page-header-right">
                   <div>
-                    <div className="mobile-search-toggle">
-                      <CircleIconButton onClick={toggleMobileSearch} aria-label="Search">
-                        <MaterialIcon type="search" />
-                      </CircleIconButton>
-                    </div>
 
                     <UploadMediaButton user={user} links={links} />
 

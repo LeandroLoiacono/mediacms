@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
-import { ApiUrlConsumer, LinksConsumer } from '../utils/contexts/';
-import { PageStore } from '../utils/stores/';
-import { MediaListRow } from '../components/MediaListRow';
-import { MediaMultiListWrapper } from '../components/MediaMultiListWrapper';
-import { ItemListAsync } from '../components/item-list/ItemListAsync.jsx';
-import { InlineSliderItemListAsync } from '../components/item-list/InlineSliderItemListAsync.jsx';
+import React, { useEffect } from 'react';
+import { LinksConsumer, SiteConsumer } from '../utils/contexts/';
 import { Page } from './Page';
-import { translateString } from '../utils/helpers/';
 import { Flag } from '../components/flags/flag';
+import { useLayout, useTheme } from '../utils/hooks';
+import { Logo } from '../components/page-layout/PageHeader/Logo';
 
-const EmptyMedia: React.FC = ({}) => {
+const EmptyMedia: React.FC = ({ }) => {
+  const { logo } = useTheme();
   return (
-    <LinksConsumer>
-      {(links) => (
-        <div className="empty-media">
-          <div className="welcome-title">Welcome to MediaCMS!</div>
-          <div className="start-uploading">Start uploading media and sharing your work!</div>
-          <a href={links.user.addMedia} title="Upload media" className="button-link">
-            <i className="material-icons" data-icon="video_call"></i>UPLOAD MEDIA
-          </a>
-        </div>
+    <SiteConsumer>
+      {(site) => (
+        <LinksConsumer>
+          {(links) => (
+            <div className="empty-media">
+              <div className="welcome-title">Welcome to Meseo Archeologico Vereto!</div>
+              <Logo src={logo} href={links.home} title={site.title} alt="Logo" />
+            </div>
+          )}
+        </LinksConsumer>
       )}
-    </LinksConsumer>
+    </SiteConsumer>
   );
 };
 
@@ -36,52 +34,22 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
-  id = 'home',
-  //featured_title = PageStore.get('config-options').pages.home.sections.featured.title,
-  //recommended_title = PageStore.get('config-options').pages.home.sections.recommended.title,
-  //latest_title = PageStore.get('config-options').pages.home.sections.latest.title,
-  featured_title = translateString('Featured'),
-  recommended_title = translateString('Recommended'),
-  latest_title = translateString('Latest'),
-  latest_view_all_link = false,
-  featured_view_all_link = true,
-  recommended_view_all_link = true,
+  id = 'home'
 }) => {
-  const [zeroMedia, setZeroMedia] = useState(false);
-  const [visibleLatest, setVisibleLatest] = useState(false);
-  const [visibleFeatured, setVisibleFeatured] = useState(false);
-  const [visibleRecommended, setVisibleRecommended] = useState(false);
-
-  const onLoadLatest = (length: number) => {
-    setVisibleLatest(0 < length);
-    setZeroMedia(0 === length);
-  };
-
-  const onLoadFeatured = (length: number) => {
-    setVisibleFeatured(0 < length);
-  };
-
-  const onLoadRecommended = (length: number) => {
-    setVisibleRecommended(0 < length);
-  };
 
   return (
     <Page id={id}>
       <LinksConsumer>
         {(links) => (
-          <ApiUrlConsumer>
-            {(apiUrl) => (
-              <div className="language-selection-wrapper">
-                <h1>Seleziona la lingua</h1>
-                <div className="flags">
-                  <Flag src="./static/images/flags/it.svg" alt={"IT"} title="Italian" href={"http://localhost/playlists/z6l4XwVRZ"}></Flag>
-                  <Flag src="./static/images/flags/en.svg" alt={"EN"} title="Italian" href={"http://localhost/playlists/l6ny9U9Nc"}></Flag>
-                  <Flag src="./static/images/flags/fr.svg" alt={"FR"} title="Italian" href={"http://localhost/playlists/VcA9cZmA7"}></Flag>
-                  <Flag src="./static/images/flags/de.svg" alt={"DE"} title="Italian" href={"http://localhost/playlists/GAdwW1mSD"}></Flag>
-                </div> 
-              </div>
-            )}
-          </ApiUrlConsumer>
+          <div className="language-selection-wrapper">
+            <h1>Seleziona la lingua</h1>
+            <div className="flags">
+              <Flag src="./static/images/flags/it.svg" alt={"IT"} title="Italian" href={"/playlists/z6l4XwVRZ"}></Flag>
+              <Flag src="./static/images/flags/en.svg" alt={"EN"} title="Italian" href={"/playlists/l6ny9U9Nc"}></Flag>
+              <Flag src="./static/images/flags/fr.svg" alt={"FR"} title="Italian" href={"/playlists/VcA9cZmA7"}></Flag>
+              <Flag src="./static/images/flags/de.svg" alt={"DE"} title="Italian" href={"/playlists/GAdwW1mSD"}></Flag>
+            </div>
+          </div>
         )}
       </LinksConsumer>
     </Page>
