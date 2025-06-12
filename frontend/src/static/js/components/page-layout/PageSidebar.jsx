@@ -30,9 +30,9 @@ export function PageSidebar() {
     }
 
     sidebarBottomDom = document.querySelector('.page-sidebar-bottom');
-    sidebarBottomDomPrevSibling = sidebarBottomDom.previousSibling;
+    sidebarBottomDomPrevSibling = sidebarBottomDom?.previousSibling;
 
-    if ('relative' !== getComputedStyle(sidebarBottomDomPrevSibling).position) {
+    if (typeof sidebarBottomDomPrevSibling !== 'undefined' && 'relative' !== getComputedStyle(sidebarBottomDomPrevSibling).position) {
       isAbsoluteThemeSwitcher = true;
     }
 
@@ -45,7 +45,7 @@ export function PageSidebar() {
     let siblingBottomPosition = 0;
 
     function bottomInitPos() {
-      const newSiblingBottomPosition = sidebarBottomDomPrevSibling.offsetTop + sidebarBottomDomPrevSibling.offsetHeight;
+      const newSiblingBottomPosition = sidebarBottomDomPrevSibling?.offsetTop + sidebarBottomDomPrevSibling?.offsetHeight;
 
       if (newSiblingBottomPosition !== siblingBottomPosition) {
         siblingBottomPosition = newSiblingBottomPosition;
@@ -69,17 +69,17 @@ export function PageSidebar() {
 
   function onWindowResize() {
     let prevElem = sidebarBottomDomPrevSibling;
-    let bottomElHeight = sidebarBottomDom.offsetHeight;
+    let bottomElHeight = sidebarBottomDom?.offsetHeight;
 
     if (isAbsoluteThemeSwitcher) {
-      bottomElHeight += prevElem.offsetHeight;
-      prevElem = prevElem.previousSibling;
+      bottomElHeight += prevElem?.offsetHeight;
+      prevElem = prevElem?.previousSibling;
     }
 
     setIsFixedBottom(
       !(
-        prevElem.offsetTop + prevElem.offsetHeight + bottomElHeight >
-        window.innerHeight - containerRef.current.offsetTop
+        prevElem?.offsetTop + prevElem?.offsetHeight + bottomElHeight >
+        window.innerHeight - containerRef.current?.offsetTop
       )
     );
   }

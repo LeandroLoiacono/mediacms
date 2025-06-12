@@ -145,9 +145,7 @@ export function HeaderRight(props) {
                     >
                       <PopupTrigger contentRef={popupContentRef}>
                         {user.is.anonymous ? (
-                          <CircleIconButton aria-label="Settings">
-                            <MaterialIcon type="more_vert" />
-                          </CircleIconButton>
+                          <div></div>
                         ) : (
                           <UserThumbnail size="small" isButton={true} />
                         )}

@@ -19,11 +19,13 @@ export function HeaderLeft() {
               {(links) => (
                 <div className="page-header-left">
                   <div>
-                    <div className="close-search-field">
-                      <CircleIconButton onClick={toggleMobileSearch}>
-                        <i className="material-icons">arrow_back</i>
-                      </CircleIconButton>
-                    </div>
+                    {!user.is.anonymous && enabledSidebar ? (
+                      <div className="close-search-field">
+                        <CircleIconButton onClick={toggleMobileSearch}>
+                          <i className="material-icons">arrow_back</i>
+                        </CircleIconButton>
+                      </div>
+                    ) : null}
                     {!user.is.anonymous && enabledSidebar ? (
                       <div className="toggle-sidebar">
                         <CircleIconButton onClick={toggleSidebar}>
