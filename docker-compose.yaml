@@ -29,6 +29,7 @@ services:
       - "80:80"
     volumes:
       - ./:/home/mediacms.io/mediacms/
+    restart: always
     environment:
       ENABLE_CELERY_BEAT: 'no'
       ENABLE_CELERY_SHORT: 'no'
@@ -40,6 +41,7 @@ services:
     image: mediacms/mediacms:latest
     volumes:
       - ./:/home/mediacms.io/mediacms/
+    restart: always
     environment:
       ENABLE_UWSGI: 'no'
       ENABLE_NGINX: 'no'
@@ -54,6 +56,7 @@ services:
       replicas: 1
     volumes:
       - ./:/home/mediacms.io/mediacms/
+    restart: always
     environment:
       ENABLE_UWSGI: 'no'
       ENABLE_NGINX: 'no'
@@ -72,7 +75,7 @@ services:
       POSTGRES_DB: mediacms
       TZ: Europe/London
     healthcheck:
-      test: ["CMD-SHELL",  "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}", "--host=db", "--dbname=$POSTGRES_DB", "--username=$POSTGRES_USER"]
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}", "--host=db", "--dbname=$POSTGRES_DB", "--username=$POSTGRES_USER" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -80,7 +83,7 @@ services:
     image: "redis:alpine"
     restart: always
     healthcheck:
-      test: ["CMD", "redis-cli","ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 30s
       timeout: 10s
       retries: 3
