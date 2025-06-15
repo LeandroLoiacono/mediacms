@@ -3,6 +3,7 @@ import { BrowserCache } from '../classes/';
 import { PageStore } from '../stores/';
 import { addClassname, removeClassname } from '../helpers/';
 import SiteContext from './SiteContext';
+import UserContext from './UserContext';
 
 let slidingSidebarTimeout;
 
@@ -43,6 +44,7 @@ export const LayoutContext = createContext();
 
 export const LayoutProvider = ({ children }) => {
   const site = useContext(SiteContext);
+  const user = useContext(UserContext);
   const cache = new BrowserCache('MediaCMS[' + site.id + '][layout]', 86400);
 
   const enabledSidebar = !!(document.getElementById('app-sidebar') || document.querySelector('.page-sidebar'));
@@ -81,8 +83,9 @@ export const LayoutProvider = ({ children }) => {
 
     setVisibleSidebar(
       'media' !== PageStore.get('current-page') &&
-        1023 < window.innerWidth &&
-        (null === visibleSidebar || visibleSidebar)
+      1023 < window.innerWidth &&
+      (null === visibleSidebar || visibleSidebar) &&
+      !!user?.is.anonymous
     );
   }, []);
 

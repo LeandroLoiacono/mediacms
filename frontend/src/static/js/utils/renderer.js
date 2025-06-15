@@ -12,11 +12,12 @@ const AppProviders = ({ children }) => (
   </LayoutProvider>
 );
 
-import { PageHeader, PageSidebar } from '../components/page-layout';
+import { PageHeader, PageFooter, PageSidebar } from '../components/page-layout';
 
 export function renderPage(idSelector, PageComponent) {
   const appHeader = document.getElementById('app-header');
   const appSidebar = document.getElementById('app-sidebar');
+  const appFooter = document.getElementById('app-footer');
   const appContent = idSelector ? document.getElementById(idSelector) : undefined;
 
   if (appContent && PageComponent) {
@@ -25,6 +26,7 @@ export function renderPage(idSelector, PageComponent) {
         {appHeader ? ReactDOM.createPortal(<PageHeader />, appHeader) : null}
         {appSidebar ? ReactDOM.createPortal(<PageSidebar />, appSidebar) : null}
         <PageComponent />
+        {appFooter ? ReactDOM.createPortal(<PageFooter />, appFooter) : null}
       </AppProviders>,
       appContent
     );
@@ -33,6 +35,7 @@ export function renderPage(idSelector, PageComponent) {
       <AppProviders>
         {ReactDOM.createPortal(<PageHeader />, appHeader)}
         <PageSidebar />
+        {ReactDOM.createPortal(<PageFooter />, appFooter)}
       </AppProviders>,
       appSidebar
     );
@@ -42,6 +45,7 @@ export function renderPage(idSelector, PageComponent) {
         <ThemeProvider>
           <UserProvider>
             <PageHeader />
+            <PageFooter />
           </UserProvider>
         </ThemeProvider>
       </LayoutProvider>,

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { PageStore } from '../../../utils/stores/';
 import { useUser, useLayout } from '../../../utils/hooks/';
 import { addClassname } from '../../../utils/helpers/';
-import { SearchField } from './SearchField';
 import { HeaderRight } from './HeaderRight';
 import { HeaderLeft } from './HeaderLeft';
 

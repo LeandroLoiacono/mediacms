@@ -43,30 +43,17 @@ body {
   .flags {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 8px;
   }
 
   .flags img {
     margin: 20px auto;
-    max-width: 160px;
+    max-width: 120px;
     width: 100%;
     height: auto;
     display: block;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  @media (min-width: 768px) {
-    .flags {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .flags img {
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-    }
   }
 
   .sign-in-wrap {
@@ -84,4 +71,34 @@ body {
   .page-header-left .logo {
     padding-left: 20px;
   }
+
+  .footer-logo {
+    height: 48px;
+    margin: 0 8px;
+  }
+
+  #app-footer {
+    background-color: white;
+    min-height: 64px;
+    padding: 12px 0 8px;
+  }
+
+  @media (min-width: 768px) {
+    .flags {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .flags img {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .footer-logo {
+      height: 64px;
+      margin: 0 12px;
+    }
+  }
+
 }
