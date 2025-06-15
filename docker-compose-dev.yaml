@@ -45,7 +45,7 @@ services:
     environment:
       DEVELOPMENT_MODE: True
     ports:
-      - "80:80"
+      - "8080:80"
     volumes:
       - ./:/home/mediacms.io/mediacms/
     depends_on:
@@ -61,7 +61,7 @@ services:
       POSTGRES_DB: mediacms
       TZ: Europe/London
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}", "--host=db", "--dbname=$POSTGRES_DB", "--username=$POSTGRES_USER"]
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}", "--host=db", "--dbname=$POSTGRES_DB", "--username=$POSTGRES_USER" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -69,7 +69,7 @@ services:
     image: "redis:alpine"
     restart: always
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 30s
       timeout: 10s
       retries: 3
