@@ -136,3 +136,6 @@ If you like the project, here's a few things you can do
 ## Contact
 
 info@mediacms.io
+
+## Mapping video:
+ - /opt/mav/mediacms/frontend/src/static/js/fixtures/video-map.js

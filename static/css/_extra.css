@@ -75,8 +75,16 @@ body {
 
   #app-footer {
     background-color: white;
-    min-height: 64px;
+    min-height: 72px;
     padding: 12px 0 8px;
+  }
+
+  #app-footer footer {
+    text-align: center;
+  }
+
+  .page-main-wrap {
+    min-height: calc(100vh - 72px);
   }
 
   @media (min-width: 768px) {
@@ -92,8 +100,13 @@ body {
     }
 
     .footer-logo {
+      min-height: 92px;
       height: 64px;
       margin: 0 12px;
+    }
+
+    .page-main-wrap {
+      min-height: calc(100vh - 92px);
     }
   }
 

@@ -13,7 +13,7 @@ services:
       ENABLE_CELERY_BEAT: 'no'
       ADMIN_USER: 'admin'
       ADMIN_EMAIL: 'admin@localhost'
-      # ADMIN_PASSWORD: 'uncomment_and_set_password_here'
+      ADMIN_PASSWORD: '021221' #'uncomment_and_set_password_here'
     command: "./deploy/docker/prestart.sh"
     restart: on-failure
     depends_on:
@@ -26,7 +26,7 @@ services:
     deploy:
       replicas: 1
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - ./:/home/mediacms.io/mediacms/
     restart: always
@@ -74,6 +74,8 @@ services:
       POSTGRES_PASSWORD: mediacms
       POSTGRES_DB: mediacms
       TZ: Europe/London
+    ports:
+      - "5432:5432"
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}", "--host=db", "--dbname=$POSTGRES_DB", "--username=$POSTGRES_USER" ]
       interval: 10s
